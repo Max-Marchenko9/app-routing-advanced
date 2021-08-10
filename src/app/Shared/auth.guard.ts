@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
-import {CanActivate} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
-  canActivate(): boolean {
-    const value = false;
-    console.log(`AuthGuard canActivate, return ${value}`)
-    return value;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if(this.authService.isLoggedIn) {
+      return true;
+    }
+    this.authService.redirectUrl = state.url    
+    this.router.navigate(['login']).then()
+    
+    return false;
   }
   
 }

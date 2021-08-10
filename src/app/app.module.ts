@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import {PhrasesModule} from "./phrases/phrases.module";
 import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PhrasesModule,
-    AdminModule
+    AdminModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
